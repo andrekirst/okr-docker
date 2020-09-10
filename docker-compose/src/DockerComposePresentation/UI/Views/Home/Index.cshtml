@@ -1,0 +1,12 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model Api.GetWeatherByLocationParameters
+
+<div class="text-center">
+    <form asp-controller="Weather" asp-action="GetByLocation" method="post">
+        <input type="text" asp-for="City" placeholder="Stadt" />
+        <button type="submit" class="btn btn-primary">Lade ⛅</button>
+    </form>
+</div>

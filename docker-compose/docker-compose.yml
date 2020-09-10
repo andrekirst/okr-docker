@@ -1,0 +1,36 @@
+version: '3.4'
+
+services:
+  cache:
+    image: redis:6.0.7
+    restart: always
+  api:
+    # container_name: api
+    build:
+      context: ./src/DockerComposePresentation
+      dockerfile: API/Dockerfile
+    depends_on:
+      - cache
+    ports:
+        - "8080:80"
+    restart: always
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+      OPENWEATHERMAP__APIKEY: "73f581164b7c53e3bdda39d18d52f77c"
+      OPENWEATHERMAP__BASEURL: "https://api.openweathermap.org/data/2.5/"
+      REDIS__CONNECTION: "cache:6379"
+      ASPNETCORE_URLS: http://+:80
+  ui:
+    # container_name: ui
+    build:
+      context: ./src/DockerComposePresentation
+      dockerfile: UI/Dockerfile
+    depends_on:
+      - api
+    ports:
+      - "80:80"
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+      API__BASEURL: "http://api:80"
+      ASPNETCORE_URLS: http://+:80
+      

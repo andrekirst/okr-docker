@@ -1,0 +1,20 @@
+﻿@model Api.GetWeatherByLocationQueryResponse
+
+@{
+    ViewData["Title"] = Model.Data.Name;
+}
+
+<div class="text-center">
+    <h3>Quelle: @Model.Source</h3>
+    <h4>Version: @Model.Version</h4>
+    
+    <p>Die 🌡 beträgt @Model.Data.Main.Temp °C, bei gefühlten @Model.Data.Main.Feels_like °C. Die niedrigste 🌡 beträgt @Model.Data.Main.Temp_min °C und kann bis auf @Model.Data.Main.Temp_max °C steigen.</p>
+    @foreach (var weather in @Model.Data.Weather)
+    {
+        <p>@weather.Main - @weather.Description</p>
+    }
+    
+    <p>Sichtweite: @Model.Data.Visibility Meter</p>
+    <p>Der Wind kommt aus @Model.Data.Wind.Deg °, bei einer Geschwindigkeit mit @Model.Data.Wind.Speed km/h.</p>
+
+</div>

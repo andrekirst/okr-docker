@@ -1,0 +1,19 @@
+version: '3.4'
+
+services:
+  cache:
+    image: redis:6.0.7
+  api:
+    image: ${DOCKER_REGISTRY-}api
+    build:
+      context: .
+      dockerfile: API/Dockerfile
+    links:
+    - cache
+  ui:
+    image: ${DOCKER_REGISTRY-}ui
+    build:
+      context: .
+      dockerfile: UI/Dockerfile
+    links:
+    - api

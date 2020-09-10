@@ -1,0 +1,25 @@
+version: '3.4'
+
+services:
+  api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - OPENWEATHERMAP__APIKEY=73f581164b7c53e3bdda39d18d52f77c
+      - OPENWEATHERMAP__BASEURL=https://api.openweathermap.org/data/2.5/
+      - REDIS_CONNECTION=cache:6379
+    ports:
+      - "8080:80"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+  ui:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - API_BASEURL=http://api
+    ports:
+      - "80:80"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
