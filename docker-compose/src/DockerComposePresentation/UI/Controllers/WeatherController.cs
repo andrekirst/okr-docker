@@ -16,10 +16,10 @@ namespace UI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> GetByLocation(GetWeatherByLocationParameters parameters, CancellationToken cancellationToken = default)
+        public async Task<IActionResult> Location(GetWeatherByLocationParameters parameters, CancellationToken cancellationToken = default)
         {
             var data = await _swaggerClient.GetLocation(parameters, cancellationToken);
-            return View("View", data);
+            return View("Location", data);
         }
     }
 }
