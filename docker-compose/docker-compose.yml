@@ -28,7 +28,7 @@ services:
     depends_on:
       - api
     ports:
-      - "80:80"
+      - "8000:80"
     environment:
       ASPNETCORE_ENVIRONMENT: "Development"
       API__BASEURL: "http://api:80"
