@@ -34,7 +34,10 @@ namespace API
                 })
                 .AddPolicyHandler(GetRetryPolicy());
 
-            services.AddDistributedMemoryCache();
+            services.AddDistributedRedisCache(config =>
+            {
+                config.Configuration = Configuration["Redis:Connection"];
+            });
 
             services.AddMediatR(typeof(API.Program).Assembly);
 

@@ -27,7 +27,7 @@ namespace UI.Logic
             _configuration = configuration;
 
             _client = new swaggerClient(
-                _configuration["API_BASEURL"],
+                _configuration["Api:BaseUrl"],
                 _httpClientFactory.CreateClient(name: nameof(SwaggerClientWrapper)));
         }
 
